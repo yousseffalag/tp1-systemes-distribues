@@ -4,8 +4,11 @@ import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountRequestDT
 import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountResponseDTO;
 import com.falag.youssef.tp1implementationmicroservice.entities.BankAccount;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
+
+import java.lang.annotation.Target;
 
 /**
  * @author Youssef Falag
@@ -20,4 +23,5 @@ import org.mapstruct.ReportingPolicy;
 public interface BankAccountMapper {
     BankAccount toEntity(BankAccountRequestDTO bankAccountRequestDTO);
     BankAccountResponseDTO toResponseDTO(BankAccount bankAccount);
+    void updateEntity(BankAccountRequestDTO bankAccountRequestDTO,@MappingTarget BankAccount bankAccount);
 }

@@ -3,6 +3,8 @@ package com.falag.youssef.tp1implementationmicroservice.service;
 import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountRequestDTO;
 import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountResponseDTO;
 
+import java.util.UUID;
+
 
 /**
  * @author Youssef Falag
@@ -11,5 +13,7 @@ import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountResponseD
  */
 public interface BankAccountService {
 
-    public BankAccountResponseDTO addAcount(BankAccountRequestDTO bankAccountDTO);
+    public BankAccountResponseDTO addAccount(BankAccountRequestDTO bankAccountDTO);
+
+    public BankAccountResponseDTO updateAccount(UUID id,BankAccountRequestDTO bankAccountDTO);
 }

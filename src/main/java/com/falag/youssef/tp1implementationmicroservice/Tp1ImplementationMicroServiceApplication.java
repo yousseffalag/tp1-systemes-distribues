@@ -1,14 +1,17 @@
 package com.falag.youssef.tp1implementationmicroservice;
 
 import com.falag.youssef.tp1implementationmicroservice.entities.BankAccount;
+import com.falag.youssef.tp1implementationmicroservice.entities.Customer;
 import com.falag.youssef.tp1implementationmicroservice.enums.AccountType;
 import com.falag.youssef.tp1implementationmicroservice.repositories.BankAccountRepository;
+import com.falag.youssef.tp1implementationmicroservice.repositories.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 
 @SpringBootApplication
@@ -19,17 +22,29 @@ public class Tp1ImplementationMicroServiceApplication {
     }
 
     @Bean
-    CommandLineRunner start(BankAccountRepository bankAccountRepository){
+    CommandLineRunner start(BankAccountRepository bankAccountRepository, CustomerRepository customerRepository){
         return args -> {
-            for(int i=0;i<10;i++){
-                BankAccount bankAccount=BankAccount.builder()
-                        .type(Math.random()>0.5? AccountType.CURRENT_ACCOUNT:AccountType.SAVING_ACCOUNT)
-                        .balance(10000+Math.random()*80000)
-                        .createdAt(LocalDate.now())
-                        .currency("MAD")
+
+            Stream.of("Youssef","Linus","Adams").forEach(c->{
+                Customer customer=Customer.builder()
+                        .name(c)
                         .build();
-                bankAccountRepository.save(bankAccount);
-            }
+                customerRepository.save(customer);
+            });
+
+            customerRepository.findAll().forEach(customer -> {
+                for(int i=0;i<10;i++){
+                    BankAccount bankAccount=BankAccount.builder()
+                            .type(Math.random()>0.5? AccountType.CURRENT_ACCOUNT:AccountType.SAVING_ACCOUNT)
+                            .balance(10000+Math.random()*80000)
+                            .createdAt(LocalDate.now())
+                            .currency("MAD")
+                            .customer(customer)
+                            .build();
+                    bankAccountRepository.save(bankAccount);
+                }
+            });
+
         };
     }
 
