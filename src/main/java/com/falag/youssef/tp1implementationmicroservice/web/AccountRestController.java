@@ -1,7 +1,10 @@
 package com.falag.youssef.tp1implementationmicroservice.web;
 
+import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountRequestDTO;
+import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountResponseDTO;
 import com.falag.youssef.tp1implementationmicroservice.entities.BankAccount;
 import com.falag.youssef.tp1implementationmicroservice.repositories.BankAccountRepository;
+import com.falag.youssef.tp1implementationmicroservice.service.BankAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,7 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class AccountRestController {
     private final BankAccountRepository bankAccountRepository;
+    private final BankAccountService bankAccountService;
 
     @GetMapping("/bankAccounts")
     public List<BankAccount> bankAccounts(){
@@ -31,9 +35,9 @@ public class AccountRestController {
     }
 
     @PostMapping("/bankAccounts")
-    public BankAccount save(@RequestBody BankAccount bankAccount){
-        bankAccount.setCreatedAt(LocalDate.now());
-        return bankAccountRepository.save(bankAccount);
+    public BankAccountResponseDTO save(@RequestBody BankAccountRequestDTO bankAccountRequestDTO){
+
+        return bankAccountService.addAcount(bankAccountRequestDTO);
     }
 
     @PutMapping("/bankAccounts/{id}")
