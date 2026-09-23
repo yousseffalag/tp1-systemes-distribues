@@ -8,15 +8,11 @@ import com.falag.youssef.tp1implementationmicroservice.service.BankAccountServic
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author Youssef Falag
- * @created 22/09/2026
- * @time 00:47
- */
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")

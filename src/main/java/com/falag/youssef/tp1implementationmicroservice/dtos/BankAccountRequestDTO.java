@@ -7,13 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
-/**
- * @author Youssef Falag
- * @created 22/09/2026
- * @time 13:00
- */
-
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class BankAccountRequestDTO {
     private Double balance;

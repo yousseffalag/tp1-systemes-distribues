@@ -6,11 +6,7 @@ import com.falag.youssef.tp1implementationmicroservice.dtos.BankAccountResponseD
 import java.util.UUID;
 
 
-/**
- * @author Youssef Falag
- * @created 22/09/2026
- * @time 12:57
- */
+
 public interface BankAccountService {
 
     public BankAccountResponseDTO addAccount(BankAccountRequestDTO bankAccountDTO);
